@@ -8,7 +8,7 @@ app "demo-waypoint" {
     
     use "docker" {}
     registry {
-    use "aws-ecr" {
+      use "aws-ecr" {
         region     = "us-east-2"
         repository = "demo-waypoint"
         tag        = "latest"
@@ -19,19 +19,55 @@ app "demo-waypoint" {
   # The deploy lifecycle step defines how to stage the
   # requisite artifacts on a target deployment platform
   deploy {
-
-    use "kubernetes" {
+    
+    workspace "dev" {
+      use "kubernetes" {
       probe_path = "/"
       service_port = 3000
+      namespace = "dev"
+      }
+    }
+
+    workspace "pre-prod" {
+      use "kubernetes" {
+      probe_path = "/"
+      service_port = 3000
+      namespace = "pre-prod"
+      }
+    }
+
+    workspace "prod" {
+      use "kubernetes" {
+      probe_path = "/"
+      service_port = 3000
+      namespace = "prod"
+      }
     }
   }
 
   # The release lifecycle step 
   release {
-
-    use "kubernetes" {
-      load_balancer = true
-      port          = 80
+    
+    workspace "dev" {
+        use "kubernetes" {
+        load_balancer = true
+        port          = 80
+        namespace = "dev"
+      }
+    }
+    workspace "pre-prod" {
+        use "kubernetes" {
+        load_balancer = true
+        port          = 80
+        namespace = "pre-prod"
+      }
+    }
+    workspace "prod" {
+        use "kubernetes" {
+        load_balancer = true
+        port          = 80
+        namespace = "prod"
+      }
     }
   }
 }
