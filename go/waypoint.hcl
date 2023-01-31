@@ -10,12 +10,13 @@ app "demo-waypoint" {
 
     workspace "dev" {
       use "docker" {}
-      registry {
-        use "aws-ecr" {
-          region     = "us-east-2"
-          repository = "demo-waypoint"
-          tag        = "latest"
-        }
+    }
+
+    registry {
+      use "aws-ecr" {
+        region     = "us-east-2"
+        repository = "demo-waypoint"
+        tag        = "latest"
       }
     }
   }
