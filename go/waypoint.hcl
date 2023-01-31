@@ -16,7 +16,7 @@ app "demo-waypoint" {
       use "aws-ecr" {
         region     = "us-east-2"
         repository = "demo-waypoint"
-        tag        = "latest"
+        tag        = var.push_tag
       }
     }
   }
@@ -77,4 +77,13 @@ app "demo-waypoint" {
       }
     }
   }
+}
+
+variable "push_tag" {
+  default = {
+    "dev"    = gitrefpretty()
+    "production" = "latest"
+  }[workspace.name]
+  type        = string
+  description = "Tag to use when pushing the image to a registry"
 }
