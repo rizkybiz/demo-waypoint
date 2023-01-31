@@ -20,32 +20,18 @@ app "demo-waypoint" {
   # requisite artifacts on a target deployment platform
   deploy {
 
-    # default non-workspace
-    use "docker" {}
-
-    # We can separate out environments using "workspace"
-    # to define different deployment platforms depending
-    # on the environment
-    workspace "dev" {
-      use "docker" {}
-    }
-
-    workspace "prod" {
-      use "kubernetes" {
-        probe_path = "/"
-        service_port = 3000
-      }
+    use "kubernetes" {
+      probe_path = "/"
+      service_port = 3000
     }
   }
 
   # The release lifecycle step 
   release {
 
-    workspace "prod" {
-      use "kubernetes" {
-        load_balancer = true
-        port          = 80
-      }
+    use "kubernetes" {
+      load_balancer = true
+      port          = 80
     }
   }
 }
