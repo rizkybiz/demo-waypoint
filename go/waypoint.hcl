@@ -23,6 +23,8 @@ app "demo-waypoint" {
   # The deploy lifecycle step defines how to stage the
   # requisite artifacts on a target deployment platform
   deploy {
+
+    use "kubernetes" {}
     
     workspace "dev" {
       use "kubernetes" {
