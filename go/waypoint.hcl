@@ -5,12 +5,12 @@ app "demo-waypoint" {
   # The build lifecycle step defines how to go from source
   # to artifact, and optionally where to store that artifact
   build {
-    # Use the cloud native buildpack from Heroku
+    
     use "docker" {}
     registry {
     use "aws-ecr" {
         region     = "us-east-2"
-        repository = "waypoint-registry"
+        repository = "demo-waypoint"
         tag        = "latest"
       }
     }

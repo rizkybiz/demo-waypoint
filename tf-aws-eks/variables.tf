@@ -7,3 +7,7 @@ variable "region" {
   type    = string
   default = "us-east-2"
 }
+
+variable "waypoint_server_cookie" {
+  type = string
+}
