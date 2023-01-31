@@ -6,12 +6,14 @@ app "demo-waypoint" {
   # to artifact, and optionally where to store that artifact
   build {
     
-    use "docker" {}
-    registry {
-      use "aws-ecr" {
-        region     = "us-east-2"
-        repository = "demo-waypoint"
-        tag        = "latest"
+    workspace "dev" {
+      use "docker" {}
+      registry {
+        use "aws-ecr" {
+          region     = "us-east-2"
+          repository = "demo-waypoint"
+          tag        = "latest"
+        }
       }
     }
   }
