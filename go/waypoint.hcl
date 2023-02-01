@@ -58,7 +58,7 @@ app "demo-waypoint" {
     workspace "dev" {
         use "kubernetes" {
         load_balancer = true
-        port          = 80
+        port          = 8080
         namespace     = "dev"
       }
     }
