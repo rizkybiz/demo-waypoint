@@ -59,7 +59,8 @@ app "demo-waypoint" {
         use "kubernetes" {
         load_balancer = true
         port          = 80
-        namespace = "dev"
+        node_port     = 80
+        namespace     = "dev"
       }
     }
     workspace "pre-prod" {
@@ -82,7 +83,7 @@ app "demo-waypoint" {
 variable "push_tag" {
   default = {
     "dev"    = gitrefpretty()
-    "production" = "latest"
+    "prod" = "latest"
   }[workspace.name]
   type        = string
   description = "Tag to use when pushing the image to a registry"
