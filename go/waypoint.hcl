@@ -83,6 +83,7 @@ variable "push_tag" {
   default = {
     "dev"    = gitrefpretty()
     "prod" = "latest"
+    "pre-prod" = "latest"
   }[workspace.name]
   type        = string
   description = "Tag to use when pushing the image to a registry"
