@@ -59,7 +59,6 @@ app "demo-waypoint" {
         use "kubernetes" {
         load_balancer = true
         port          = 80
-        node_port     = 80
         namespace     = "dev"
       }
     }
@@ -67,14 +66,14 @@ app "demo-waypoint" {
         use "kubernetes" {
         load_balancer = true
         port          = 80
-        namespace = "pre-prod"
+        namespace     = "pre-prod"
       }
     }
     workspace "prod" {
         use "kubernetes" {
         load_balancer = true
         port          = 80
-        namespace = "prod"
+        namespace     = "prod"
       }
     }
   }
